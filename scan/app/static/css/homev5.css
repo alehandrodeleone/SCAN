@@ -1,0 +1,72 @@
+.videocard_lable{
+    background-size:auto;
+    font-size: 17px;
+    background-color: rgb(228, 241, 248);
+    padding-left: 15px;
+    padding-top:10px;
+    padding-bottom:8px ;
+}   
+.gpu_info{
+    font-size: 14px;
+    margin-top: 15px;
+}
+.cpu_label{
+    background-color: aliceblue;
+    font-size: 17px;
+    background-size: auto;
+    padding-left: 15px;
+    padding-top:10px;
+    padding-bottom:8px ;
+}
+.cpu_info{
+    font-size: 14px;
+    margin-top: 15px;
+    
+}
+.mb_label{
+    background-size:auto;
+    font-size: 17px;
+    background-color:aliceblue;
+    padding-left: 15px;
+    padding-top:10px;
+    padding-bottom:8px ;
+}   
+
+
+.mb_info{
+    font-size: 14px;
+    margin-top: 15px;
+    
+}
+
+.hdd_label{
+    background-size:auto;
+    font-size: 17px;
+    background-color: rgb(228, 241, 248);
+    padding-left: 15px;
+    padding-top:10px;
+    padding-bottom:8px ;
+}   
+.hdd_info{
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.other_label{
+    background-size:auto;
+    font-size: 17px;
+    background-color:aliceblue;
+    padding-left: 15px;
+    padding-top:10px;
+    padding-bottom:8px ;
+}   
+
+
+.info_other
+{
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+
+

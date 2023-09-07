@@ -1,0 +1,37 @@
+<!doctype html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Начать сканирование</title>
+    <link rel="stylesheet" href="{%static 'css/start.css'%}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <form method="post" action="{% url 'home_page' %}">
+        {% csrf_token %}
+    <div class="container">
+        <div class="center">
+          <button class="btn" type="submit" >
+            <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+              <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+              <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+            </svg>
+            <span>СКАНИРОВАТЬ</span>
+          </button>
+        </div>
+      </div>
+    </form>
+<h1 class="attention_label">
+    <p class="info">Сканирование может занять от 3 до 30 секунд!</p>
+    <p class="info">После нажатия на кнопку "Сканировать" пожалуйста подождите</p>
+    <p class="info">Работает только с операционными системами Windows<p>
+</h1>
+</body>
+</html>

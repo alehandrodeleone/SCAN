@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel='stylesheet' href="{% static 'css/homev5.css' %}">
+</head>
+<body>
+
+<h1 class="cpu_label">Процессор
+<p class=" cpu_info" name="cpu_name">{{cpu_info3}}</p>
+{% comment %} <p class=" cpu_info" >{{cpu_info4}}</p> {% endcomment %}
+<p class=" cpu_info" name="cpu_work">Загрузка процессора: {{cpu_info}}%</p>
+<p class=" cpu_info" name="cpu_cores">Кол-во ядер процессора: {{cpu_info2}}</p>
+</h1>
+
+
+{%for i in gpus %}
+<h1 class="videocard_lable">Видеокарта
+<p class=" gpu_info" name="viedocard_name">Наименование: {{i.name}}<p>
+<p class=" gpu_info" name="viedocard_memory">Память: {{i.memoryTotal}} MB</p> 
+<p class=" gpu_info" name="viedocard_work">Используется на: <span id="loadValue">{{i.load}}</span>%</p>
+<p class=" gpu_info" name="viedocard_temperature">Температура: {{i.temperature}}°C</p>
+
+</h1>
+<h1 class="mb_label">Материнская плата
+<p class="mb_info" name="mb_name">Модель материнской платы: {{name_mb}}<p>
+<p class="mb_info" name="mb_socket">Cокет материнской платы: {{socket_mb}}</p>
+<p class="mb_info" name="mb_ram">Обьем оперативной памяти: {{memory}}GB</p>
+
+    
+{% for slot in memory_slots %}
+
+        {% if slot.slot_number == 'ChannelA-DIMM1' %}
+        <p class="mb_info"name="mb_ram_mhz"> Слот оперативной памяти: {{ slot.memory_speed }} MHz</p>
+        {% elif slot.slot_number == 'ChannelA-DIMM2' %}
+            <p class="mb_info">Слот оперативной памяти: {{ slot.memory_speed }} MHz</p>
+        {% elif slot.slot_number == 'ChannelB-DIMM2' %}
+        <p class="mb_info">Слот оперативной памяти: {{ slot.memory_speed }} MHz</p>
+        {% elif slot.slot_number == 'ChannelB-DIMM2' %}
+        <p class="mb_info">Слот оперативной памяти: {{ slot.memory_speed }} MHz</p>
+        {% endif %}
+    
+{% endfor %}
+</h1>
+        
+    <h1 class="hdd_label">HDD И SSD
+        {% for disk in hard_disk %}
+
+            <p class="hdd_info">Диск:{{ disk.disk }}</p> 
+            <p class="hdd_info">Объем:{{ disk.memory }} GB</p> 
+        {%endfor%}
+    </h1>
+        
+
+<h1 class="other_label">
+    <p class="info_other">Время беспрерывной работы системы: {{ runtime }}</p>
+    <p class="info_other">Ваш ip адрес: {{ip}}</p>
+    <p class="info_other">Ваш Mac адрес: {{mac_address}}</p>
+</h1>
+<script>
+    // Получаем элемент с идентификатором "loadValue"
+    var loadElement = document.getElementById("loadValue");
+  
+    // Получаем текущее значение и конвертируем его в число
+    var loadValue = parseFloat(loadElement.innerHTML);
+  
+    // Умножаем значение 
+    var multipliedValue = loadValue * 100;
+
+    // Заменяем значение в HTML
+    loadElement.innerHTML = multipliedValue;
+</script>
+
+{%endfor%}
+</body>
+</html>
