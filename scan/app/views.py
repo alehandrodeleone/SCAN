@@ -21,26 +21,25 @@ def start_page(request):
 def scan_page(request):
     pythoncom.CoInitialize()# инициализация потока wmi для работы в джанго
 
+    #Получаем информацию о бесперерывной работе пк
     time = datetime.datetime.now()
-    hour = time.hour
-    minute = time.minute
-
     time_sys = datetime.datetime.fromtimestamp(psutil.boot_time())
     runtime = time - time_sys
-    #processor = platform.processor()#получаем название процессора
+
     cpu_percent = psutil.cpu_percent()# получить загруженность
     cpu_count = psutil.cpu_count()#получить кол-во ядер
     cpu_name=cpuinfo.get_cpu_info()['brand_raw']#получаем название процессора
-    gpus = GPUtil.getGPUs()
-    c = wmi.WMI()
 
+
+    gpus = GPUtil.getGPUs()#Получаем информацию о видеокарте
     for i in gpus:#проходимся по всем полученным данным и передаем их в переменную для сохранения
         name=i.name
         memory_card=i.memoryTotal
         temperature=i.temperature
-        load_gpu=i.load 
-        
+        load_gpu=i.load
+
     # Получаем информацию о материнской плате
+    c = wmi.WMI()
     motherboard = c.Win32_BaseBoard()[0]
     motherboard_name = motherboard.Product#название мат платы
     processor = c.Win32_Processor()[0]
@@ -57,9 +56,8 @@ def scan_page(request):
             'memory_type': memory_type,
             'memory_speed': memory_speed
         })
-    for memory in c.Win32_PhysicalMemory():
-        memory= memory.Capacity
-        
+
+
     for mhz in memory_slots:# проходимся по списку что бы получить mhz оперативной памяти
         mhz=memory_speed
 
@@ -86,13 +84,12 @@ def scan_page(request):
     
         return hard_disks    
     hard_disks = get_hard_disks()
-
-# получение ip адреса пользователя
+    # получение ip адреса пользователя
     hostname = socket.gethostname()
     ip_address = socket.gethostbyname(hostname)
     mac_address = ':'.join(['{:02x}'.format((uuid.getnode() >> ele) & 0xff) for ele in range(0,8*6,8)][::-1])
 
-# получаем информацию о windows
+    # получаем информацию о windows
     username = getpass.getuser()#имя компьютера
     version = platform.win32_ver()[0]#Версия
     build_number = platform.win32_ver()[1]# сборка
@@ -106,8 +103,7 @@ def scan_page(request):
     save_info_user.save()
 
     context = {
-        "hour": hour,
-        "minute": minute,
+
         "runtime":runtime,
         "cpu_info":cpu_percent,
         "cpu_info2":cpu_count,
@@ -124,6 +120,11 @@ def scan_page(request):
         "mac_address":mac_address
     }
     return render(request,"home.html",context)
+
+
+
+
+
 
 from  rest_framework.generics import ListAPIView,RetrieveAPIView
 from .serializers import info_user_serializers

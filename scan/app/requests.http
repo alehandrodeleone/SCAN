@@ -2,7 +2,7 @@ GET http://127.0.0.1:8000/api/
 Content-Type: application/json
 ###
 
-GET http://127.0.0.1:8000/api_vs
+GET http://127.0.0.1:8000/api_vs/12/
 Content-Type: application/json
 
 ###
@@ -29,3 +29,30 @@ Content-Type: application/json
     "Mb_Ram_mhz": null,
     "Hdd": "asd"
 }
+###
+PATCH   http://127.0.0.1:8000/api_vs/40/
+Content-Type: application/json
+
+{
+    "name_pc": "Professional",
+    "version_windows": null,
+    "build_number": null,
+    "mac": null,
+    "ip": null,
+    "work_system_non_stop": null,
+    "processor": "Intel(R) Core(TM) i5-7600K CPU @ 3.80GHz",
+    "processor_work": "17.2",
+    "cores": "5",
+    "name_videocard": "NVIDIA GeForce RTX 3050",
+    "memory_videocard": "8192.0",
+    "temperature_videocard": "43.0",
+    "work_videocard": "0.1",
+    "Mb_name": "PRIME Z270-P",
+    "Mb_socket": null,
+    "Mb_Ram_memory": null,
+    "Mb_Ram_mhz": null,
+    "Hdd": "asd"
+}
+###
+DELETE    http://127.0.0.1:8000/api_vs/41/
+Content-Type: application/json
